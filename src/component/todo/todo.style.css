@@ -1,0 +1,42 @@
+.todo-container {
+  width: 100%;
+  display: flex;
+  
+  justify-content:space-between ;
+}
+
+.id {
+  width: 20%;
+}
+.content {
+    width: 7%;
+  }
+
+.status {
+    width: 23%;
+  }
+.btn btn-danger{
+    width: 23%;
+    
+  }
+
+  .btn btn-succes{
+    width: 23%;
+    
+  }
+  .btn btn-primary{
+    width: 23%;
+    
+  }
+
+ .edit-input-container{
+  display:flex;
+  justify-content: space-between;
+ } 
+.form-container{
+  display: flex;
+  align-items: flex-start;
+}
+.td-content-overline{
+  text-decoration:line-through; 
+}
