@@ -30,13 +30,18 @@
   }
 
  .edit-input-container{
+  
   display:flex;
-  justify-content: space-between;
+  
  } 
-.form-container{
+.edit-form-container{
+  
   display: flex;
   align-items: flex-start;
 }
 .td-content-overline{
   text-decoration:line-through; 
+}
+.span-message{
+  color: red;
 }

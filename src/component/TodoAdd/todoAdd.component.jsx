@@ -8,15 +8,13 @@ const TodoAdd = () => {
   const inputRef = useRef(null);
 
   const { todos, setTodos } = useContext(TodosContext);
-  const {mode,setMode}=useContext(ModeContext);
-  const [IsMessage,setIsMessage]=useState(true);
-  
+  const { mode, setMode } = useContext(ModeContext);
+  const [IsMessage, setIsMessage] = useState(false);
+
   console.log(IsMessage);
 
-  const handleAddTodo =  (e) => {
+  const handleAddTodo = (e) => {
     e.preventDefault();
-
-    
 
     const data = {
       content: inputRef.current.value,
@@ -43,31 +41,25 @@ const TodoAdd = () => {
 
       console.log("todolar api den alındı ve set edildi.");
     };
-    if(inputRef.current.value.length>2){  
+    if (inputRef.current.value.length > 2) {
       postData(data);
       setIsMessage(true);
-    }
-    else{
-      //setIsMessage(true);
-      //console.log(IsMessage);
-    }
-  
+    } 
   };
 
   const toggleMode = () => {
     setMode(mode === "Light Mode" ? "Dark Mode" : "Light Mode");
-    localStorage.setItem("mode", mode === "Light Mode" ? "Dark Mode" : "Light Mode");
-    
+    localStorage.setItem(
+      "mode",
+      mode === "Light Mode" ? "Dark Mode" : "Light Mode"
+    );
   };
 
-  const valueControl=()=>{
-  
-
-    inputRef.current.value.length>=3?setIsMessage(false):setIsMessage(true); 
-  
-  }
-
-
+  const valueControl = () => {
+    inputRef.current.value.length < 3 && inputRef.current.value.length >= 1
+      ? setIsMessage(true)
+      : setIsMessage(false);
+  };
 
   return (
     <div className="todo-add-container">
@@ -75,24 +67,30 @@ const TodoAdd = () => {
         <strong>{username}</strong>'s TO DO LIST
       </h3>
       <div className="form-container">
-      <form onSubmit={handleAddTodo} >
-        <label>Add Some Todos ...</label>
-        <input ref={inputRef} type="text"  onChange={valueControl} required />
-        <button type="submit" className="btn btn-success sm">
-          Ekle
-        </button>{IsMessage && <span className="span-message">(Todo must have at least 3 characters)</span>}
-      </form>
-      <button
-        className={
-          mode === "Dark Mode"
-            ? "btn btn-outline-light"
-            : "btn btn-outline-dark"
-        }
-        onClick={toggleMode}
-      >
-        {mode === "Light Mode" ? "Press for Dark Mode" : "Press for Light Mode"}
-      </button>
-        
+        <form onSubmit={handleAddTodo}>
+          <label>Add Some Todos ...</label>
+          <input ref={inputRef} type="text" onChange={valueControl} required />
+          <button type="submit" className="btn btn-success sm">
+            Ekle
+          </button>
+          {IsMessage && (
+            <span className="span-message">
+              (Todo must have at least 3 characters)
+            </span>
+          )}
+        </form>
+        <button
+          className={
+            mode === "Dark Mode"
+              ? "btn btn-outline-light"
+              : "btn btn-outline-dark"
+          }
+          onClick={toggleMode}
+        >
+          {mode === "Light Mode"
+            ? "Press for Dark Mode"
+            : "Press for Light Mode"}
+        </button>
       </div>
     </div>
   );
