@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useContext, useState } from "react";
 import { TodosContext } from "../../contexts/todos.context";
 import { ModeContext } from "../../contexts/mode.context";
 import "./todoAdd.style.css";
@@ -9,15 +9,14 @@ const TodoAdd = () => {
 
   const { todos, setTodos } = useContext(TodosContext);
   const {mode,setMode}=useContext(ModeContext);
-
+  const [IsMessage,setIsMessage]=useState(true);
   
+  console.log(IsMessage);
 
-  const handleAddTodo = async (e) => {
+  const handleAddTodo =  (e) => {
     e.preventDefault();
 
     
-    console.log(inputRef.current.value);
-    console.log( inputRef.current.value.length);
 
     const data = {
       content: inputRef.current.value,
@@ -44,11 +43,13 @@ const TodoAdd = () => {
 
       console.log("todolar api den alındı ve set edildi.");
     };
-    if(inputRef.current.value.length>3){  
+    if(inputRef.current.value.length>2){  
       postData(data);
+      setIsMessage(true);
     }
     else{
-      alert("Girilen Todo minimum 3 karakterli olmalıdır... ");
+      //setIsMessage(true);
+      //console.log(IsMessage);
     }
   
   };
@@ -56,8 +57,17 @@ const TodoAdd = () => {
   const toggleMode = () => {
     setMode(mode === "Light Mode" ? "Dark Mode" : "Light Mode");
     localStorage.setItem("mode", mode === "Light Mode" ? "Dark Mode" : "Light Mode");
-    console.log("mode =>", mode);
+    
   };
+
+  const valueControl=()=>{
+  
+
+    inputRef.current.value.length>=3?setIsMessage(false):setIsMessage(true); 
+  
+  }
+
+
 
   return (
     <div className="todo-add-container">
@@ -67,10 +77,10 @@ const TodoAdd = () => {
       <div className="form-container">
       <form onSubmit={handleAddTodo} >
         <label>Add Some Todos ...</label>
-        <input ref={inputRef} type="text" required />
+        <input ref={inputRef} type="text"  onChange={valueControl} required />
         <button type="submit" className="btn btn-success sm">
           Ekle
-        </button>
+        </button>{IsMessage && <span className="span-message">(Todo must have at least 3 characters)</span>}
       </form>
       <button
         className={
@@ -82,6 +92,7 @@ const TodoAdd = () => {
       >
         {mode === "Light Mode" ? "Press for Dark Mode" : "Press for Light Mode"}
       </button>
+        
       </div>
     </div>
   );

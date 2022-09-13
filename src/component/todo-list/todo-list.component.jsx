@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import {  useContext } from "react";
 import "./todo-list.style.css";
 import Todo from "../todo/todo.component";
 import TodoAdd from "../TodoAdd/todoAdd.component";
@@ -6,8 +6,7 @@ import { TodosContext } from "../../contexts/todos.context";
 import { ModeContext } from "../../contexts/mode.context";
 
 const TodoList = () => {
-  console.log("Todo list component  çalıştı");
-
+  
   const {todos,setTodos}=useContext(TodosContext);
   const{mode}=useContext(ModeContext)
 

@@ -31,6 +31,10 @@
     color:white;
 }
 
+.span-message{
+    color:red;
+}
+
 /*
 .todo-list-header{
     width: 100%;

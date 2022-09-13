@@ -2,10 +2,9 @@ import { createContext, useState,useEffect } from 'react';
 
 
 export const ModeContext = createContext({
-  mode: '',
+  mode: null,
+  setMode:()=>null
 });
-
-
 
 
 export const ModeProvider = ({ children }) => {
