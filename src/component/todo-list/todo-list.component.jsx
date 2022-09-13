@@ -5,11 +5,12 @@ import TodoAdd from "../TodoAdd/todoAdd.component";
 import { TodosContext } from "../../contexts/todos.context";
 import { ModeContext } from "../../contexts/mode.context";
 
+
 const TodoList = () => {
   
-  const {todos,setTodos}=useContext(TodosContext);
+  const {todos,setTodos,isLoading}=useContext(TodosContext);
   const{mode}=useContext(ModeContext)
-
+  
   const changeStatusTodo=(id,isCompleted)=>{
     
     const updateTodo=async()=>{
@@ -52,10 +53,15 @@ const TodoList = () => {
           </tr>
         </thead>
         <tbody>
-
+        {isLoading &&
+              <div class="spinner-border text-primary" role="status">
+          <span >Loading...</span>
+        </div>}
+        
+ 
         {todos.map((todo) => (
           <Todo key={todo.id} todoToChild={todo}  changeStatusTodo={changeStatusTodo}  />
-        ))}
+        ))} 
         
         </tbody>
       </table>

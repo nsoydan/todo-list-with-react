@@ -15,6 +15,7 @@ export const TodosContext = createContext({
 export const TodosProvider = ({ children }) => {
   
     const [todos, setTodos] = useState([]);
+    const [isLoading,setIsLoading]=useState(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -24,6 +25,7 @@ export const TodosProvider = ({ children }) => {
           const newTodos = await response.json();
           console.log(newTodos);
           setTodos(newTodos);
+          setIsLoading(false);
           console.log("todolar api den alındı ve set edildi.");
         }
         fetchData();
@@ -32,7 +34,7 @@ export const TodosProvider = ({ children }) => {
 
 
   
-  const value = { todos,setTodos };
+  const value = { todos,setTodos,isLoading };
   
   return (
     <TodosContext.Provider value={value}>

@@ -43,7 +43,7 @@ const TodoAdd = () => {
     };
     if (inputRef.current.value.length > 2) {
       postData(data);
-      setIsMessage(true);
+      setIsMessage(false);
     } 
   };
 
@@ -56,7 +56,7 @@ const TodoAdd = () => {
   };
 
   const valueControl = () => {
-    inputRef.current.value.length < 3 && inputRef.current.value.length >= 1
+    inputRef.current.value.length >= 1 && inputRef.current.value.length <3
       ? setIsMessage(true)
       : setIsMessage(false);
   };

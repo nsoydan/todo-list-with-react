@@ -7,6 +7,7 @@ const Todo = ({ todoToChild, changeStatusTodo }) => {
 
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isMessage, setIsMessage] = useState(false);
+  
   const inputRef = useRef(null);
 
   const toggleOpenEdit = () => {

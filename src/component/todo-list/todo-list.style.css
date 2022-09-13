@@ -35,28 +35,6 @@
     color:red;
 }
 
-/*
-.todo-list-header{
-    width: 100%;
-      padding: 10px 0;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid darkgrey;
+.spinner-border{
+    margin-left:250px;
 }
-.header-block {
-    text-transform: capitalize;
-    width: 23%;
-
-     }
-
-     
-.btn-outline-dark{
-    margin-left: auto;
-}
-.btn-outline-light{
-    margin-left: auto;
-}
-
-.container{
-
-} */
