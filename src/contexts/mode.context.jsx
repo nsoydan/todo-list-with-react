@@ -13,7 +13,7 @@ export const ModeProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('mode',mode);
-      }, []);
+      }, [mode]);
 
   const value = { mode,setMode };
   
